@@ -9,19 +9,29 @@ import java.util.HashMap;
 public class main_bw {
     private static HashMap<String, ArrayList<Integer>> phoneBook = new HashMap<>();
     public static void main(String[] args) {
-        int a1 = 123;        
-        int a2 = 1583;        
-        int a3 = 23659;
-        int a4 = 3988496;
+        int a1 = 8563244;        
+        int a2 = 8562314;        
+        int a3 = 8652314;
+        int a4 = 8546321;
+        int a5 = 8965423;        
+        int a6 = 8965132;
+        int a7 = 8956475;
+        int a8 = 8914782;
+
         String s1 = "Anton";
         String s2 = "Stepan";
         String s3 = "Vova";
-        String s4 = "Anton";
+        String s4 = "Artem";
         add(s1, a1);
         add(s2, a2);
         add(s3, a3);
-        add(s4, a4);
-        
+        add(s4, a4);        
+        add(s1, a5);
+        add(s1, a6);
+        add(s2, a7);
+        add(s3, a8);
+
+
         System.out.println(getPhoneBook());
         System.out.println(find(s4));
         System.out.println(find("fdsfsd"));
