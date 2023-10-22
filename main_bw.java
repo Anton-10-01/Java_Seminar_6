@@ -22,24 +22,31 @@ public class main_bw {
         add(s3, a3);
         add(s4, a4);
         
+        System.out.println(getPhoneBook());
+        System.out.println(find(s4));
+        System.out.println(find("fdsfsd"));
     }
 
-    public static void add(String s, int n) {
+    public static void add(String s, Integer n) {
         if(phoneBook.containsKey(s)) {
-            // phoneBook.putAll(s,n);
+            phoneBook.get(s).add(n);
         } else {
-
+            ArrayList<Integer> values = new ArrayList<>();
+            values.add(n);
+            phoneBook.put(s, values);
         }
         
     }
 
     public static ArrayList<Integer> find(String name) {
-
-        return null;
+        ArrayList<Integer> numb = new ArrayList<>();
+        if (phoneBook.containsKey(name)) {
+            numb.addAll(phoneBook.get(name));
+        }
+        return numb;
     }
 
     public static HashMap<String, ArrayList<Integer>> getPhoneBook() {
-
         return phoneBook;
     }
 }
