@@ -1,11 +1,9 @@
 package Java.Java_Seminar_6;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Scanner;
-import java.util.Map;
 
 
 /**
@@ -13,7 +11,6 @@ import java.util.Map;
  */
 public class main_bw {
     private static HashMap<String, ArrayList<String>> phoneBook = new HashMap<>();
-    //private static LinkedHashMap<String, ArrayList<String>> linkPhoneBook = new LinkedHashMap<>();
     public static void main(String[] args) {
         String a1 = "8563244";        
         String a2 = "8562314";        
@@ -30,7 +27,7 @@ public class main_bw {
         String s2 = "Stepan";
         String s3 = "Vova";
         String s4 = "Artem";
-        //phoneBook = new HashMap<>();
+
         add(s1, a1);
         add(s2, a2);
         add(s3, a3);
@@ -50,7 +47,7 @@ public class main_bw {
     public static void interfacePhoneBooke() {
         try (Scanner iScanner = new Scanner(System.in)) {
             boolean s = true;
-            while(s != false) {
+            while(s) {
                 System.out.println("1. Добавить контакт");
                 System.out.println("2. Показать все контакты");
                 System.out.println("3. Поиск контактов");
@@ -87,7 +84,11 @@ public class main_bw {
                 removeContact(nameRem);
                 break;
                 case 5: s = false;
+                break;
                 default:
+                    System.out.println("***************");
+                    System.out.println("Неверная команда!");
+                    System.out.println("***************");
                     break;
             }
         }
@@ -97,7 +98,6 @@ public class main_bw {
     }
 
     public static void printGetPhoneBook() {
-        //sortphoneBook();
         LinkedHashMap<String, ArrayList<String>> linkPhoneBook = sortphoneBook();
         System.out.println("***************");
         for(var item: linkPhoneBook.entrySet()) {
@@ -158,19 +158,20 @@ public class main_bw {
         for(var item: phoneBook.entrySet()) {
             str.add(item.getKey());
         }
-        for (int i = 0; i < str.size(); i++) {
-            for (var item: phoneBook.entrySet()) {
-                //System.out.println(phoneBook.get(str.get(i)));
-                if(phoneBook.get(str.get(i)).size() > item.getValue().size()) {
+        for (int i = 0; i < str.size() - 1; i++) {
+            for (int j = i + 1; j < str.size(); j++) {
+                if(phoneBook.get(str.get(j)).size() > phoneBook.get(str.get(i)).size()) {
+                    System.out.println(str.get(i));
                     strPhone = str.get(i);
+                    str.set(i, str.get(j));
+                    str.set(j, strPhone);
+                    System.out.println(str.get(i));
                 }
             }
-            if(strPhone != "") {
-                linkPhoneBook.put(strPhone, phoneBook.get(strPhone));
-            }
         }
-        for(var item: phoneBook.entrySet()) {
-            linkPhoneBook.putIfAbsent(item.getKey(), item.getValue());
+
+        for(int i = 0; i < str.size(); i++) {
+            linkPhoneBook.put(str.get(i), phoneBook.get(str.get(i)));
         }
         return linkPhoneBook;
     }
